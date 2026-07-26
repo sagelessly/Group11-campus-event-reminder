@@ -39,8 +39,8 @@ campus-event-reminder/
 
 1. Clone the repository:
    ```
-   git clone <your-repo-url>
-   cd campus-event-reminder
+   git clone https://github.com/sagelessly/Group11-campus-event-reminder.git
+   cd Group11-campus-event-reminder
    ```
 
 2. (Optional) Create a virtual environment:
