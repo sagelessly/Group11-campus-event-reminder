@@ -7,7 +7,7 @@ Object-Oriented Programming (OOP) and SQLite for persistent storage.
 
 - Add, view, edit, and delete campus events
 - Input validation for event title, date, time, and location
-- Persistent storage using SQLite (`events.db`)
+- Persistent storage using SQLite (`campus_events.db`)
 - Upcoming event reminders (next 7 days by default)
 - Unit tests for both the Event and Database modules
 
@@ -49,10 +49,8 @@ campus-event-reminder/
    source venv/bin/activate   # On Windows: venv\Scripts\activate
    ```
 
-3. Install dependencies (none required beyond the standard library):
-   ```
-   pip install -r requirements.txt
-   ```
+3. Install dependencies:
+   No external packages or installation required! The application runs entirely on Python's standard built-in libraries (`sqlite3`, `datetime`, `unittest`).
 
 ## Running the Application
 
@@ -74,7 +72,7 @@ You will see a menu like this:
 ```
 
 Follow the prompts to manage your campus events. The database file
-`events.db` is created automatically in the project folder the first
+`campus_events.db` is created automatically in the project folder the first
 time the app runs.
 
 ## Running Tests
@@ -82,7 +80,7 @@ time the app runs.
 From the project root:
 
 ```
-python -m unittest discover tests
+python -m unittest discover -s tests
 ```
 
 ## Standalone Reminders
