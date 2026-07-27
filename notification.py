@@ -32,10 +32,12 @@ def print_reminders(days_ahead=7):
         print("No upcoming events to remind you about.")
         return
 
-    print(f"You have {len(upcoming)} event(s) coming up in the next {days_ahead} day(s):")
+    event_word = "event" if len(upcoming) == 1 else "events"
+    print(f"You have {len(upcoming)} {event_word} coming up in the next {days_ahead} day(s):")
     for event in upcoming:
         days_left = (event.get_datetime() - datetime.now()).days
-        print(f" - {event.title} on {event.date} at {event.time} ({days_left} day(s) left)")
+        day_word = "day" if days_left == 1 else "days"
+        print(f" - {event.title} on {event.date} at {event.time} ({days_left} {day_word} left)")
 
 
 if __name__ == "__main__":

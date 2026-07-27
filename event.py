@@ -20,6 +20,10 @@ class Event:
     TIME_FORMAT = "%H:%M"
 
     def __init__(self, title, date, time, location, description="", event_id=None):
+        if event_id is not None and not isinstance(event_id, int):
+            raise TypeError(
+                f"event_id must be an int or None, got {type(event_id).__name__}"
+            )
         self.event_id = event_id
         self.title = self._validate_title(title)
         self.date = self._validate_date(date)
@@ -30,12 +34,16 @@ class Event:
     # ---------- Validation methods ----------
     @staticmethod
     def _validate_title(title):
-        if not title or not str(title).strip():
+        if not isinstance(title, str):
+            raise InvalidEventDataError("Event title must be a string.")
+        if not title.strip():
             raise InvalidEventDataError("Event title cannot be empty.")
-        return str(title).strip()
+        return title.strip()
 
     @staticmethod
     def _validate_date(date_str):
+        if not isinstance(date_str, str):
+            raise InvalidEventDataError("Event date must be a string.")
         try:
             datetime.strptime(date_str, Event.DATE_FORMAT)
         except (ValueError, TypeError):
@@ -46,6 +54,8 @@ class Event:
 
     @staticmethod
     def _validate_time(time_str):
+        if not isinstance(time_str, str):
+            raise InvalidEventDataError("Event time must be a string.")
         try:
             datetime.strptime(time_str, Event.TIME_FORMAT)
         except (ValueError, TypeError):
@@ -56,9 +66,11 @@ class Event:
 
     @staticmethod
     def _validate_location(location):
-        if not location or not str(location).strip():
+        if not isinstance(location, str):
+            raise InvalidEventDataError("Event location must be a string.")
+        if not location.strip():
             raise InvalidEventDataError("Event location cannot be empty.")
-        return str(location).strip()
+        return location.strip()
 
     # ---------- Utility methods ----------
     def get_datetime(self):

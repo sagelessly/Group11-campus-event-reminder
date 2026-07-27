@@ -66,6 +66,8 @@ def get_all_events(db_name=DB_NAME):
 
 def get_event_by_id(event_id, db_name=DB_NAME):
     """Return a single Event by id, or None if it doesn't exist."""
+    if not isinstance(event_id, int):
+        raise TypeError(f"event_id must be an int, got {type(event_id).__name__}")
     with get_connection(db_name) as conn:
         row = conn.execute(
             "SELECT * FROM events WHERE event_id = ?", (event_id,)
@@ -75,6 +77,8 @@ def get_event_by_id(event_id, db_name=DB_NAME):
 
 def update_event(event_id, db_name=DB_NAME, **fields):
     """Update one or more fields of an event by id. Returns True on success."""
+    if not isinstance(event_id, int):
+        raise TypeError(f"event_id must be an int, got {type(event_id).__name__}")
     existing = get_event_by_id(event_id, db_name)
     if not existing:
         return False
@@ -95,6 +99,8 @@ def update_event(event_id, db_name=DB_NAME, **fields):
 
 def delete_event(event_id, db_name=DB_NAME):
     """Delete an event by id. Returns True if a row was deleted."""
+    if not isinstance(event_id, int):
+        raise TypeError(f"event_id must be an int, got {type(event_id).__name__}")
     with get_connection(db_name) as conn:
         cursor = conn.execute("DELETE FROM events WHERE event_id = ?", (event_id,))
         return cursor.rowcount > 0

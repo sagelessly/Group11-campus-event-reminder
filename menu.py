@@ -56,6 +56,9 @@ def edit_event_ui():
     view_events_ui()
     try:
         event_id = int(input("Enter the ID of the event to edit: "))
+        if event_id <= 0:
+            print("Event ID must be a positive number.")
+            return
     except ValueError:
         print("Invalid ID.")
         return
@@ -91,6 +94,9 @@ def delete_event_ui():
     view_events_ui()
     try:
         event_id = int(input("Enter the ID of the event to delete: "))
+        if event_id <= 0:
+            print("Event ID must be a positive number.")
+            return
     except ValueError:
         print("Invalid ID.")
         return
